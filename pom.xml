@@ -48,11 +48,9 @@
 
     <modules>
         <module>arm-travel-commons</module>
-        <module>arm-travel-mapper</module>
-        <module>arm-travel-pojo</module>
-        <module>arm-travel-service</module>
         <module>arm-travel-web</module>
         <module>arm-travel-web-app</module>
+        <module>arm-travel-framework</module>
     </modules>
 
 </project>
