@@ -1,5 +1,6 @@
 package com.arm.travel.controller;
 
+import com.travel.common.resultex.domain.R;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping
-    public String hello() {
-        return "Hello, SpringBoot";
+    public R hello() {
+        return R.success("i am ok");
+    }
+
+    @GetMapping("/v2")
+    public R hello2() {
+        int m = 2 /0;
+        return R.success("i am ok");
     }
 }

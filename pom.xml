@@ -51,6 +51,7 @@
         <module>arm-travel-web</module>
         <module>arm-travel-web-app</module>
         <module>arm-travel-framework</module>
+        <module>arm-travel-component-resultex</module>
     </modules>
 
 </project>
