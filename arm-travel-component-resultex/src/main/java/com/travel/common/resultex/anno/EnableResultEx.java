@@ -1,4 +1,4 @@
-package com.travel.common.resultex;
+package com.travel.common.resultex.anno;
 
 import com.travel.common.resultex.handler.GlobalExceptionControllerHandler;
 import com.travel.common.resultex.handler.ResultResponseHandler;

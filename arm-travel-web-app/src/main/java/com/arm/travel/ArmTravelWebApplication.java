@@ -1,6 +1,6 @@
 package com.arm.travel;
 
-import com.travel.common.resultex.EnableResultEx;
+import com.travel.common.resultex.anno.EnableResultEx;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
