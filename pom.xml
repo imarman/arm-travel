@@ -272,7 +272,6 @@
         <module>arm-travel-commons</module>
         <module>arm-travel-web</module>
         <module>arm-travel-web-app</module>
-        <module>arm-travel-framework</module>
         <module>arm-travel-component-resultex</module>
         <module>arm-travel-component-limiter</module>
         <module>arm-travel-orm-mp</module>
