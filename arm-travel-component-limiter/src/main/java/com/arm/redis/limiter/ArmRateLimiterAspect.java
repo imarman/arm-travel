@@ -1,6 +1,6 @@
 package com.arm.redis.limiter;
 
-import com.arm.travel.commons.anno.PugRateLimiter;
+import com.arm.travel.commons.anno.ArmRateLimiter;
 import com.arm.travel.commons.enums.LimiterType;
 import com.arm.travel.commons.utils.ip.IpUtils;
 import com.google.common.collect.Lists;
@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Slf4j
 @Order(-1)
-public class PugRateLimiterAspect {
+public class ArmRateLimiterAspect {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -38,7 +38,7 @@ public class PugRateLimiterAspect {
     private DefaultRedisScript<Boolean> ipLimitLua;
 
     // 1: 切入点
-    @Pointcut("@annotation(com.arm.travel.commons.anno.PugRateLimiter)")
+    @Pointcut("@annotation(com.arm.travel.commons.anno.ArmRateLimiter)")
     public void limiterPonicut() {
     }
 
@@ -50,7 +50,7 @@ public class PugRateLimiterAspect {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
         // 4: 读取方法的注解信息获取限流参数
-        PugRateLimiter annotation = method.getAnnotation(PugRateLimiter.class);
+        ArmRateLimiter annotation = method.getAnnotation(ArmRateLimiter.class);
         // 6：获取服务请求的对象
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
@@ -83,15 +83,16 @@ public class PugRateLimiterAspect {
     }
 
 
-    public String getRateLimiterKey(PugRateLimiter rateLimiter, JoinPoint point, HttpServletRequest request) {
+    public String getRateLimiterKey(ArmRateLimiter rateLimiter, JoinPoint point, HttpServletRequest request) {
         StringBuffer stringBuffer = new StringBuffer(rateLimiter.key());
-        if (rateLimiter.limitType() == LimiterType.IP) {
-            stringBuffer.append(IpUtils.getIpAddr(request)).append("-");
-        }
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         Class<?> targetClass = method.getDeclaringClass();
-        stringBuffer.append(targetClass.getName()).append("-").append(method.getName());
+        // stringBuffer.append(targetClass.getName()).append("-").append(method.getName());
+        stringBuffer.append(targetClass.getSimpleName()).append(":").append(method.getName());
+        if (rateLimiter.limitType() == LimiterType.IP) {
+            stringBuffer.append("-").append(IpUtils.getIpAddr(request));
+        }
         return stringBuffer.toString();
     }
 }

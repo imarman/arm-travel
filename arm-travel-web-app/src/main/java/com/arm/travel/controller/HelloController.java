@@ -1,6 +1,7 @@
 package com.arm.travel.controller;
 
-import com.arm.travel.commons.anno.PugRateLimiter;
+import com.arm.travel.commons.anno.ArmRateLimiter;
+import com.arm.travel.commons.enums.LimiterType;
 import com.travel.common.resultex.domain.R;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping
-    @PugRateLimiter(limit = 5, timeout = 3)
+    @ArmRateLimiter(limit = 5, timeout = 3, limitType = LimiterType.IP)
     public R hello() {
         return R.success("i am ok");
     }

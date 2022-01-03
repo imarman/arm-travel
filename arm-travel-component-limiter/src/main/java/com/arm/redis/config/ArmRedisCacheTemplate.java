@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author Arman
  **/
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
-public class PugRedisCacheTemplate {
+public class ArmRedisCacheTemplate {
 
     @Autowired
     public RedisTemplate redisTemplate;

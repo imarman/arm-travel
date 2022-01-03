@@ -11,6 +11,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({PugRedisConfiguration.class})
-public @interface EnablePugLimiter {
+@Import({ArmRedisConfiguration.class})
+public @interface EnableArmLimiter {
 }

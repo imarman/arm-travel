@@ -1,6 +1,6 @@
 package com.arm.redis.config;
 
-import com.arm.redis.limiter.PugRateLimiterAspect;
+import com.arm.redis.limiter.ArmRateLimiterAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +16,7 @@ import org.springframework.scripting.support.ResourceScriptSource;
  * @author Arman
  */
 @Configuration
-public class PugRedisConfiguration {
+public class ArmRedisConfiguration {
 
     @Bean
     @SuppressWarnings(value = {"unchecked", "rawtypes"})
@@ -65,13 +65,13 @@ public class PugRedisConfiguration {
 
 
     @Bean
-    public PugRedisCacheTemplate redisCacheTemplate() {
-        return new PugRedisCacheTemplate();
+    public ArmRedisCacheTemplate redisCacheTemplate() {
+        return new ArmRedisCacheTemplate();
     }
 
     @Bean
-    public PugRateLimiterAspect limiterAspect() {
-        return new PugRateLimiterAspect();
+    public ArmRateLimiterAspect limiterAspect() {
+        return new ArmRateLimiterAspect();
     }
 
     /**
