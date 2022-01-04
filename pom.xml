@@ -275,6 +275,10 @@
         <module>arm-travel-component-resultex</module>
         <module>arm-travel-component-limiter</module>
         <module>arm-travel-orm-mp</module>
+        <module>arm-travel-component-kaptchacode</module>
+        <module>arm-travel-component-logs</module>
+        <module>arm-travel-generator</module>
+        <module>arm-travel-pojo</module>
     </modules>
 
 </project>
