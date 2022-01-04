@@ -24,8 +24,9 @@
         </dependency>
         <!-- MP -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>com.codewitharman</groupId>
+            <artifactId>arm-travel-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

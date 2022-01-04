@@ -1,6 +1,7 @@
-package com.arm.travel.config;
+package com.arm.orm.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,10 +10,20 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MyBatisPlus配置类
+ * 扫描 mapper 必须要注意扫描的包名，不然会报错
  */
 @Configuration
-@MapperScan("com.arm.travel.mapper")
+@MapperScan("com.arm.orm.mapper")
 public class MyBatisPlusConfig {
+
+    /**
+     * 自动填充时间
+     */
+    @Bean
+    MetaObjectHandler metaObjectHandler() {
+        return new CommonMetaObjectHandler();
+    }
+
     // 最新版
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
