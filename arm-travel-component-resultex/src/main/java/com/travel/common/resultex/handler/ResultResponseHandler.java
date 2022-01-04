@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * 这个请求的时候如果你项目中配置了拦截器，或者一些通知类xxxAdvice，那么就会把Swagger都会进行拦截。
  * 就会造成Swagger失效。
  */
-@RestControllerAdvice
+// @RestControllerAdvice
 public class ResultResponseHandler implements ResponseBodyAdvice<Object> {
     /**
      * 是否支持advice功能，true是支持 false是不支持

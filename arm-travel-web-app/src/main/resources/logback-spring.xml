@@ -40,7 +40,7 @@
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!--格式化输出：%d:表示日期    %thread:表示线程名     %-5level:级别从左显示5个字符宽度  %msg:日志消息    %n:是换行符-->
-            <pattern>【ARM - CONSOLE】 %clr(%d{yyyy-MM-dd HH:mm:ss:SSS}){yellow} %clr([%thread]){green} %blue([%-5level]) %logger %M %L - %msg%n
+            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss:SSS}){yellow} %clr([%thread]){green} %blue(%-5level) %logger %M %L - %msg%n
             </pattern>
             <charset>UTF-8</charset>
         </encoder>

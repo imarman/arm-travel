@@ -4,6 +4,7 @@ package com.travel.common.resultex.handler;
 import com.travel.common.resultex.domain.ErrorHandler;
 import com.travel.common.resultex.ex.BusinessException;
 import com.travel.common.resultex.ex.OrderException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionControllerHandler {
 
 
@@ -23,6 +25,8 @@ public class GlobalExceptionControllerHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ErrorHandler errorHandler(HttpServletRequest request, Exception ex) {
+        ex.printStackTrace();
+        // log.error("报错:{}", ex.getMessa);
         return ErrorHandler.error(500, "服务器忙中...", request.getRequestURL().toString());
     }
 
