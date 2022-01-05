@@ -1,37 +1,24 @@
-package com.travel.common.resultex.ex;//package com.kuangstudy.config;
+package com.travel.common.resultex.ex;
 
 
-import com.travel.common.resultex.enums.ResultStatusEnum;
+import com.travel.common.resultex.enums.IResult;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public class BusinessException extends RuntimeException {
 
-    private Integer status;
-    private String msg;
+    private IResult iResult;
 
-    public BusinessException(Integer status, String msg) {
-        super(msg);
-        this.msg = msg;
-        this.status = status;
+    public BusinessException(IResult iResult) {
+        super(iResult.getMessage());
+        this.iResult = iResult;
     }
 
-    public BusinessException(ResultStatusEnum resultStatusEnum) {
-        super(resultStatusEnum.getMessage());
-        this.status = resultStatusEnum.getStatus();
-        this.msg = resultStatusEnum.getMessage();
-    }
-
-    public BusinessException(String msg) {
-        super(msg);
-        this.status = 500;
-        this.msg = msg;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public String getMsg() {
-        return msg;
+    public BusinessException(IResult iResult, String message) {
+        super(message);
+        this.iResult = iResult;
     }
 
 }

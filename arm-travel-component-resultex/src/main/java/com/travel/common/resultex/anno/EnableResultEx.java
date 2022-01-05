@@ -1,6 +1,6 @@
 package com.travel.common.resultex.anno;
 
-import com.travel.common.resultex.handler.GlobalExceptionControllerHandler;
+import com.travel.common.resultex.handler.GlobalExceptionHandler;
 import com.travel.common.resultex.handler.ResultResponseHandler;
 import org.springframework.context.annotation.Import;
 
@@ -21,6 +21,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({GlobalExceptionControllerHandler.class, ResultResponseHandler.class})
+@Import({GlobalExceptionHandler.class, ResultResponseHandler.class})
 public @interface EnableResultEx {
 }
