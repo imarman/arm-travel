@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
         ex.printStackTrace();
         // log.error("报错:{}", ex.getMessa);
         log.error("Exception 异常地址:{}, 异常:{}", request.getRequestURL().toString(), ex.getMessage());
+        ex.printStackTrace();
         return ErrorHandler.error(IResult.ERROR_CODE, IResult.ERROR_MSG);
     }
 
@@ -34,8 +35,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = OrderException.class)
     @ResponseBody
     public ErrorHandler orderExceptionHandler(HttpServletRequest request, OrderException ex) {
-        ex.printStackTrace();
         log.error("异常地址:{}, 异常:{}", request.getRequestURL().toString(), ex.getMessage());
+        ex.printStackTrace();
         if (null != ex.getIResult()) {
             return ErrorHandler.error(ex.getIResult(), ex.getMessage());
         }
@@ -49,7 +50,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ErrorHandler businessExceptionHandler(HttpServletRequest request, BusinessException ex) {
         // 打印堆栈，以供调试
-        ex.printStackTrace();
         log.error("异常地址:{}, 异常:{}", request.getRequestURL().toString(), ex.getMessage());
         ex.printStackTrace();
         if (null != ex.getIResult()) {
