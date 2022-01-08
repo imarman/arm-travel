@@ -47,6 +47,11 @@
             <artifactId>arm-travel-component-logs</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- jwt 使用了这个 -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

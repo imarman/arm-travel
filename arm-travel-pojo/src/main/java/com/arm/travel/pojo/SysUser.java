@@ -27,6 +27,9 @@ public class SysUser implements Serializable {
 
     private String address;
 
+    @TableField(exist = false)
+    private String token;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime gmtCreate;
 

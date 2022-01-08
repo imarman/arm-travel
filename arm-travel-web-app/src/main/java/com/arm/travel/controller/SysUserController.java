@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @date 2022/1/4 21:24
  */
 @RestController
-@RequestMapping("/sys")
+@RequestMapping("/api/sys")
 @Slf4j
 public class SysUserController {
 
