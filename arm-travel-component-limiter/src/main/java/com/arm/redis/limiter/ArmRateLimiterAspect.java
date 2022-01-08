@@ -6,9 +6,8 @@ import com.arm.travel.commons.utils.ip.IpUtils;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,8 @@ public class ArmRateLimiterAspect {
     public void limiterPonicut() {
     }
 
-    @Around("limiterPonicut()")
-    public Object limiter(ProceedingJoinPoint joinPoint) {
+    @Before("limiterPonicut()")
+    public void limiter(JoinPoint joinPoint) {
         log.info("限流进来了.......");
         log.info("LimiterAspect-------------------------------------");
         // 1：获取方法的签名作为key
@@ -79,12 +78,6 @@ public class ArmRateLimiterAspect {
             }
         } catch(Exception ex){
             log.info("redis服务器出问题了....");
-        }
-
-        try {
-            return joinPoint.proceed();
-        } catch (Throwable e) {
-            return null;
         }
     }
 
