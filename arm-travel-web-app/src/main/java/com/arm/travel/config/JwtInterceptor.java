@@ -41,24 +41,18 @@ public class JwtInterceptor implements HandlerInterceptor {
         String tokenKey = "sys:user:token:" + token;
         if (!JwtTokenUtils.isVerify(token)) {
             token = redisCacheTemplate.getCacheObject(tokenKey);
-            // throw new BusinessException(BizErrEnum.TOKEN_NOT_VERIFY);
             // 如果 token 过期了，就从 redis 中拿，所以存 token 时，redis 中的 value (token) 的过期时间 必须 >= token 的过期时间
             if (token == null || StringUtils.isBlank(token)) {
                 log.error("token 过期");
-                return false;
-                // throw new BusinessException(BizErrEnum.TOKEN_NOT_VERIFY);
+                throw new BusinessException(BizErrEnum.TOKEN_NOT_VERIFY);
             }
         }
-        // DecodedJWT jwt = JwtTokenUtils.getJWTFromToken(token);
-        // log.info("签发人:{}, 签发时间:{}, 过期时间:{}", jwt.getIssuer(), DateUtils.format(jwt.getIssuedAt(), DateUtils.DATE_TIME_PATTERN), DateUtils.format(jwt.getExpiresAt(), DateUtils.DATE_TIME_PATTERN));
         // 做续期，如果过期时间小于某固定的时间，就做续期
         String userId = JwtTokenUtils.parseToken(token);
-        // SysUserService sysUserService = (SysUserService) ApplicationContextUtils.getBean("sysUserService");
         SysUser user = sysUserService.getById(userId);
         if (Vsserts.isNull(user)) {
-            return false;
+            throw new BusinessException(BizErrEnum.TOKEN_NOT_VERIFY);
         }
-
         // 判断是否需要续期，如果 redis 中的过期时间小于 10 分钟，就续期
         if (redisCacheTemplate.getExpireTime(tokenKey) < 60 * 10) {
             String newToken = JwtTokenUtils.createToken(user);
@@ -66,14 +60,6 @@ public class JwtInterceptor implements HandlerInterceptor {
             log.info("update token info,new token: {}", newToken);
         }
         return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
     }
 
 }
