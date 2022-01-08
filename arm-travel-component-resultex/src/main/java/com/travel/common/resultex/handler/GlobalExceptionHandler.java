@@ -22,7 +22,6 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public ErrorHandler errorHandler(HttpServletRequest request, Exception ex) {
-        ex.printStackTrace();
         // log.error("报错:{}", ex.getMessa);
         log.error("Exception 异常地址:{}, 异常:{}", request.getRequestURL().toString(), ex.getMessage());
         ex.printStackTrace();

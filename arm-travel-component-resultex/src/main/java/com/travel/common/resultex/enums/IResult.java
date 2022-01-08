@@ -7,7 +7,7 @@ package com.travel.common.resultex.enums;
 public interface IResult {
 
     /**
-     * 系统编码
+     * 系统编码,返回前缀
      */
     String BIZ_CODE = "30";
     String ORDER_CODE = "40";
