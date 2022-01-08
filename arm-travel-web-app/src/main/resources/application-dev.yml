@@ -11,19 +11,19 @@ spring:
       idle-timeout: 60000
       login-timeout: 5
       max-lifetime: 60000
-      maximum-pool-size: 30
+      maximum-pool-size: 10
       minimum-idle: 10
       read-only: false
-#  redis:
-#    host: 47.104.20.184
-#    port: 6379
-#    database: 0
-#    password: mkxiaoer1986.
-#    connect-timeout: 3s
-#    lettuce:
-#      pool:
-#        max-active: 20
-#        max-wait: -1
-#        max-idle: 5
-#        min-idle: 0
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password: 12346
+    connect-timeout: 3s
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
 
